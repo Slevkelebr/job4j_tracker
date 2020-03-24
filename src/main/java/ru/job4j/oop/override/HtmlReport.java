@@ -9,6 +9,7 @@ package ru.job4j.oop.override;
  */
 public class HtmlReport extends TextReport {
 
+    @Override
     public String generate(String name, String body) {
         return "<h1>" + name + "</h1>" +
                 "<br/>" +

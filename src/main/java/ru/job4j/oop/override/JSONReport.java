@@ -7,8 +7,9 @@ package ru.job4j.oop.override;
  * @version 0.1
  * @since 24.03.2020
  */
-public class JSONReport {
+public class JSONReport extends TextReport {
 
+    @Override
     public String generate(String name, String body) {
         return "{" + System.lineSeparator() + System.lineSeparator() +
                 "name: " + name + "," + System.lineSeparator() +
