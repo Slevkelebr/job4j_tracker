@@ -8,8 +8,8 @@ package ru.job4j.oop;
  * @since 24.03.2020
  */
 public class Tiger  extends Animal {
-    public Tiger() {
-        super();
+    public Tiger(String name) {
+        super(name);
         System.out.println("Load Tiger.");
     }
 }
