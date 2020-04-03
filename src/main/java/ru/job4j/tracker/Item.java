@@ -2,6 +2,13 @@ package ru.job4j.tracker;
 
 import java.util.Objects;
 
+/**
+ * class Item - модель данных заявки.
+ *
+ * @author Sergey Frolov (slevkelebr@yandex.ru)
+ * @version 0.2
+ * @since 03.04.2020
+ */
 public class Item {
     private String id;
     private String name;
