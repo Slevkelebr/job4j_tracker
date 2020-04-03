@@ -111,12 +111,29 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        if (indexOf(id) != -1) {
-            int index = indexOf(id);
+        int i = indexOf(id);
+        if (i != -1) {
             item.setId(id);
-            items[index] = item;
+            items[i] = item;
             result = true;
         }
         return result;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public boolean delete(String id) {
+        boolean rsl = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            int start = index + 1;
+            int size = position - index;
+            System.arraycopy(items, start, items, index, size);
+            rsl = true;
+        }
+        return rsl;
     }
 }
