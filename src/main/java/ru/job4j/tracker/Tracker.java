@@ -83,14 +83,40 @@ public class Tracker {
      * @return заявка.
      */
     public Item findById(String id) {
-        Item rsl = null;
-        for (int index = 0; index < position; index++) {
-            Item item = items[index];
-            if (this.items[index] != null && item.getId().equals(id)) {
-                rsl = item;
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    /**
+     * Метод возвращает индекс заявки по id.
+     * @param id id заявки.
+     * @return индекс заявки.
+     */
+    public int indexOf(String id) {
+        int index = -1;
+        for (int i = 0; i < position; i++) {
+            if (items[i].getId().equals(id)) {
+                index = i;
                 break;
             }
         }
-        return rsl;
+        return index;
+    }
+
+    /**
+     * Метод замены заявки по id.
+     * @param id id заявки.
+     * @param item новая заявка.
+     * @return true если замена прошла успешна иначе false.
+     */
+    public boolean replace(String id, Item item) {
+        boolean result = false;
+        if (indexOf(id) != -1) {
+            int index = indexOf(id);
+            item.setId(id);
+            items[index] = item;
+            result = true;
+        }
+        return result;
     }
 }
