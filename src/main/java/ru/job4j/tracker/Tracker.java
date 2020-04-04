@@ -121,9 +121,9 @@ public class Tracker {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * метод удаления заявки.
+     * @param id id заявки.
+     * @return true если замена прошла успешна иначе false.
      */
     public boolean delete(String id) {
         boolean rsl = false;
