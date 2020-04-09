@@ -95,7 +95,7 @@ public class Tracker {
     public int indexOf(String id) {
         int index = -1;
         for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
+            if (items[i] != null && items[i].getId().equals(id)) {
                 index = i;
                 break;
             }

@@ -24,7 +24,7 @@ public class StartUI {
             } else if (select == 1) {
                 StartUI.showAllItem(tracker);
             } else if (select == 2) {
-                StartUI.replace(input, tracker);
+                StartUI.replaceItem(input, tracker);
             } else if (select == 3) {
                 StartUI.delete(input, tracker);
             } else if (select == 4) {
@@ -67,7 +67,7 @@ public class StartUI {
      * @param input объект для чтения вводимых данных.
      * @param tracker объект трекера.
      */
-    public static void replace(Input input, Tracker tracker) {
+    public static void replaceItem(Input input, Tracker tracker) {
         String id = input.askStr("Enter ID item which want to replace: ");
         String name = input.askStr("Enter new name item: ");
         Item item = new Item(name);
@@ -99,7 +99,11 @@ public class StartUI {
      */
     public static void findById(Input input, Tracker tracker) {
         String id = input.askStr("Enter ID item: ");
-        System.out.println(tracker.findById(id).getName());
+        String answer = null;
+        if (tracker.findById(id).getName() != null) {
+           answer = tracker.findById(id).getName();
+        }
+        System.out.println(answer);
     }
 
     /**
