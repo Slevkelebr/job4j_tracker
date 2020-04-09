@@ -1,21 +1,38 @@
 package ru.job4j.tracker;
 
 /**
- * class StubInput - .
+ * class StubInput - позволяет тестировать class StartUI.
  *
  * @author Sergey Frolov (slevkelebr@yandex.ru)
- * @version 0.1
+ * @version 0.2
  * @since 08.04.2020
  */
 public class StubInput implements Input {
 
+    /**
+     * Варианты ответов пользователя.
+     */
+    private String[] answers;
+    /**
+     * Счетчик позиции ответа.
+     */
+    private int position = 0;
+
+    /**
+     * Конструктор.
+     * @param answers варианты ответов пользователя.
+     */
+    public StubInput(String[] answers) {
+        this.answers = answers;
+    }
+
     @Override
     public String askStr(String question) {
-        return null;
+        return answers[position++];
     }
 
     @Override
     public int askInt(String question) {
-        return 0;
+        return Integer.valueOf(askStr(question));
     }
 }
