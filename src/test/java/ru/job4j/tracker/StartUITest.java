@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class StartUITest {
 
-    @Test
+    /*@Test
     public void createItem() {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
@@ -41,5 +41,5 @@ public class StartUITest {
         StartUI.delete(new StubInput(answers), tracker);
         Item expected = tracker.findById(item.getId());
         assertNull(expected);
-    }
+    }*/
 }
