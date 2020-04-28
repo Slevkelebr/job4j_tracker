@@ -4,7 +4,7 @@ package ru.job4j.tracker;
  * class StartUI - консольное приложения для работы с Tracker.
  *
  * @author Sergey Frolov (slevkelebr@yandex.ru)
- * @version 0.4
+ * @version 0.5
  * @since 05.04.2020
  */
 public class StartUI {

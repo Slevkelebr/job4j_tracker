@@ -1,5 +1,12 @@
 package ru.job4j.tracker;
 
+/**
+ * class ValidateInput - реализует чтение данных пользователя с консоли, отлавливает возможные исключительные ситуации связанные с вводом пользователя.
+ *
+ * @author Sergey Frolov (slevkelebr@yandex.ru)
+ * @version 0.1
+ * @since 08.04.2020
+ */
 public class ValidateInput extends ConsoleInput {
 
     @Override
