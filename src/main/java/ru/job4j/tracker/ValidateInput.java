@@ -5,7 +5,7 @@ package ru.job4j.tracker;
  *
  * @author Sergey Frolov (slevkelebr@yandex.ru)
  * @version 0.1
- * @since 08.04.2020
+ * @since 28.04.2020
  */
 public class ValidateInput extends ConsoleInput {
 
