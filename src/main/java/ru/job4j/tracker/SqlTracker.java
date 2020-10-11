@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class SqlTracker implements Store {
     private Connection cn;
 
     public void init() {
-        try (FileInputStream in = new FileInputStream("c:\\projects\\job4j_tracker\\src\\main\\resources\\app.properties")) {
+        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -51,9 +51,9 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
-        try (PreparedStatement statement = cn.prepareStatement("UPDATE items set name = ? where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("UPDATE items set name = ? where id = (SELECT CAST (? AS INT))")) {
             statement.setString(1, item.getName());
-            statement.setString(1, id);
+            statement.setString(2, id);
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class SqlTracker implements Store {
     @Override
     public boolean delete(String id) {
         boolean result = false;
-        try (PreparedStatement statement = cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("DELETE FROM items WHERE id = (SELECT CAST (? AS INT))")) {
             statement.setString(1, id);
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -111,7 +111,7 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(String id) {
         Item item = null;
-        try (PreparedStatement statement = cn.prepareStatement("select * from items WHERE id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from items WHERE id = (SELECT CAST (? AS INT))")) {
             statement.setString(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
