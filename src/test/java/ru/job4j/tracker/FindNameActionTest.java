@@ -15,11 +15,12 @@ public class FindNameActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        MemTracker memTracker = new MemTracker();
+        SqlTracker sqlTracker = new SqlTracker();
+        sqlTracker.init();
         Item item = new Item("fix bug");
-        memTracker.add(item);
+        sqlTracker.add(item);
         FindNameAction act = new  FindNameAction();
-        act.execute(new StubInput(new String[] {"fix bug"}), memTracker);
+        act.execute(new StubInput(new String[] {"fix bug"}), sqlTracker);
         String expect = new StringBuilder()
                 .append("Enter name item: ").append(item.getName()).append(" ").append(item.getId()).append(System.lineSeparator())
                 .toString();

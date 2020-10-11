@@ -45,6 +45,7 @@ public class StartUI {
         };
         Input input = new ValidateInput();
         Store tracker = new SqlTracker();
+        tracker.init();
         new StartUI().init(input, tracker, actions);
     }
 }

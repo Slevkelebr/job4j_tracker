@@ -16,11 +16,12 @@ public class ShowAllActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        MemTracker memTracker = new MemTracker();
+        SqlTracker sqlTracker = new SqlTracker();
+        sqlTracker.init();
         Item item = new Item("fix bug");
-        memTracker.add(item);
+        sqlTracker.add(item);
         ShowAllAction act = new ShowAllAction();
-        act.execute(new StubInput(new String[] {}), memTracker);
+        act.execute(new StubInput(new String[] {}), sqlTracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(item.getName() + " " + item.getId())
                 .toString();
