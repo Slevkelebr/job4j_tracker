@@ -14,7 +14,7 @@ public class StartUI {
      * @param input объект для чтения вводимых данных.
      * @param tracker объект трекера.
      */
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Store tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
             this.showMenu();
@@ -44,7 +44,7 @@ public class StartUI {
                 new CreateAction(), new ShowAllAction(), new ReplaceAction(), new DeleteAction(), new FindIdAction(), new FindNameAction(), new ExitAction()
         };
         Input input = new ValidateInput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         new StartUI().init(input, tracker, actions);
     }
 }

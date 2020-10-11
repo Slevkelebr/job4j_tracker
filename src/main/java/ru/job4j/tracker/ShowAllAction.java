@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * class ShowAllAction - показать все объекты Item.
  *
@@ -14,8 +16,8 @@ public class ShowAllAction implements UserAction{
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        Item[] items = tracker.findAll();
+    public boolean execute(Input input, Store tracker) {
+        List<Item> items = tracker.findAll();
         for (Item item : items) {
             System.out.println(item.getName() + " " + item.getId());
         }
