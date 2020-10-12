@@ -38,7 +38,7 @@ public class ValidateInputTest {
     public void whenInvalidInputMaxNumber() {
         String[] data = {"8", "2"};
         ValidateStubInput input = new ValidateStubInput(data);
-        input.askInt("Enter",6);
+        input.askInt("Enter", 6);
         assertThat(
                 new String(out.toByteArray()),
                 is(String.format("Please select key from menu.%n"))

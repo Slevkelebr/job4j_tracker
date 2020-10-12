@@ -9,7 +9,7 @@ import java.util.List;
  * @version 0.1
  * @since 14.04.2020
  */
-public class ShowAllAction implements UserAction{
+public class ShowAllAction implements UserAction {
     @Override
     public String name() {
         return "=== All Item ====";
