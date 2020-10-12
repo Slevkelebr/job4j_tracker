@@ -9,6 +9,10 @@ import java.util.Properties;
 public class SqlTracker implements Store {
     private Connection cn;
 
+    public SqlTracker() {
+        init();
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -51,9 +55,9 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
-        try (PreparedStatement statement = cn.prepareStatement("UPDATE items set name = ? where id = (SELECT CAST (? AS INT))")) {
+        try (PreparedStatement statement = cn.prepareStatement("UPDATE items set name = ? where id = ? ")) {
             statement.setString(1, item.getName());
-            statement.setString(2, id);
+            statement.setInt(2, Integer.parseInt(id));
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,8 +68,8 @@ public class SqlTracker implements Store {
     @Override
     public boolean delete(String id) {
         boolean result = false;
-        try (PreparedStatement statement = cn.prepareStatement("DELETE FROM items WHERE id = (SELECT CAST (? AS INT))")) {
-            statement.setString(1, id);
+        try (PreparedStatement statement = cn.prepareStatement("DELETE FROM items WHERE id = ? ")) {
+            statement.setInt(1, Integer.parseInt(id));
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,8 +115,8 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(String id) {
         Item item = null;
-        try (PreparedStatement statement = cn.prepareStatement("select * from items WHERE id = (SELECT CAST (? AS INT))")) {
-            statement.setString(1, id);
+        try (PreparedStatement statement = cn.prepareStatement("select * from items WHERE id = ?")) {
+            statement.setInt(1, Integer.parseInt(id));
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     item = new Item(resultSet.getString("name"));
