@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 /**
  * class ConsoleInput - реализует чтение данных пользователя с консоли используя объект Scanner.

@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.action.StubAction;
+import ru.job4j.tracker.action.UserAction;
+import ru.job4j.tracker.input.StubInput;
+import ru.job4j.tracker.store.SqlTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

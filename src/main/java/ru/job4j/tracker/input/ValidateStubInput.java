@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 /**
  * class ValidateStubInput - реализует чтение данных пользователя с консоли, отлавливает возможные исключительные ситуации связанные с вводом пользователя.

@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 /**
  * class StubInput - позволяет тестировать class StartUI.

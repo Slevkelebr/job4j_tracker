@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 /**
  * interface Input - определяет работу по получению данных от пользователя в консоли.
