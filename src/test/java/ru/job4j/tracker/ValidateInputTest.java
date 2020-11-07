@@ -3,7 +3,8 @@ package ru.job4j.tracker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.tracker.input.ValidateStubInput;
+import ru.job4j.tracker.input.StubInput;
+import ru.job4j.tracker.input.ValidateInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -28,8 +29,8 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         String[] data = {"one", "1"};
-        ValidateStubInput input = new ValidateStubInput(data);
-        input.askInt("Enter", 6);
+        ValidateInput input = new ValidateInput(new StubInput(data));
+        input.askInt("Enter");
         assertThat(
                 new String(out.toByteArray()),
                 is(String.format("Please enter validate data again.%n"))
@@ -38,9 +39,9 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInputMaxNumber() {
-        String[] data = {"8", "2"};
-        ValidateStubInput input = new ValidateStubInput(data);
-        input.askInt("Enter", 6);
+        String[] data = {"1", "0"};
+        ValidateInput input = new ValidateInput(new StubInput(data));
+        input.askInt("Enter", 1);
         assertThat(
                 new String(out.toByteArray()),
                 is(String.format("Please select key from menu.%n"))

@@ -12,7 +12,7 @@ public class StubInput implements Input {
     /**
      * Варианты ответов пользователя.
      */
-    private String[] answers;
+    private final String[] answers;
     /**
      * Счетчик позиции ответа.
      */
@@ -33,11 +33,15 @@ public class StubInput implements Input {
 
     @Override
     public int askInt(String question) {
-        return Integer.valueOf(askStr(question));
+        return Integer.parseInt(askStr(question));
     }
 
     @Override
     public int askInt(String question, int max) {
-        return askInt(question);
+        int select = askInt(question);
+        if (select < 0 || select >= max) {
+            throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
+        }
+        return select;
     }
 }
