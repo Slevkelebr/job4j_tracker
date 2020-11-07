@@ -2,7 +2,8 @@ package ru.job4j.tracker.store;
 
 import ru.job4j.tracker.model.Item;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -16,12 +17,7 @@ public class MemTracker {
     /**
      * Массив для хранения заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Метод добавления заявки в хранилище
@@ -29,7 +25,7 @@ public class MemTracker {
      */
     public Item add(Item item) {
         item.setId(generateId());
-        items[position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -47,18 +43,8 @@ public class MemTracker {
      * Метод получения списка всех заявок.
      * @return массив всех заявок.
      */
-    public Item[] findAll() {
-        Item[] namesWithoutNull = new Item[items.length];
-        int size = 0;
-        for (int index = 0; index < items.length; index++) {
-            Item name = items[index];
-            if (name != null) {
-                namesWithoutNull[size] = name;
-                size++;
-            }
-        }
-        namesWithoutNull = Arrays.copyOf(namesWithoutNull, size);
-        return namesWithoutNull;
+    public List<Item> findAll() {
+        return items;
     }
 
     /**
@@ -66,16 +52,13 @@ public class MemTracker {
      * @param key имя заявки.
      * @return список заявок.
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[items.length];
-        int size = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (this.items[i] != null && this.items[i].getName().equals(key)) {
-                result[size] = this.items[i];
-                size++;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (key.equals(item.getName())) {
+                result.add(item);
             }
         }
-        result = Arrays.copyOf(result, size);
         return result;
     }
 
@@ -86,7 +69,7 @@ public class MemTracker {
      */
     public Item findById(String id) {
         int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
 
     /**
@@ -96,8 +79,8 @@ public class MemTracker {
      */
     public int indexOf(String id) {
         int index = -1;
-        for (int i = 0; i < position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
                 index = i;
                 break;
             }
@@ -112,14 +95,13 @@ public class MemTracker {
      * @return true если замена прошла успешна иначе false.
      */
     public boolean replace(String id, Item item) {
-        boolean result = false;
-        int i = indexOf(id);
-        if (i != -1) {
-            item.setId(id);
-            items[i] = item;
-            result = true;
+        int index = indexOf(id);
+        if (index == -1) {
+            return false;
         }
-        return result;
+        item.setId(id);
+        items.set(index, item);
+        return true;
     }
 
     /**
@@ -128,14 +110,11 @@ public class MemTracker {
      * @return true если замена прошла успешна иначе false.
      */
     public boolean delete(String id) {
-        boolean rsl = false;
         int index = indexOf(id);
-        if (index != -1) {
-            int start = index + 1;
-            int size = position - index;
-            System.arraycopy(items, start, items, index, size);
-            rsl = true;
+        if (index == -1) {
+            return false;
         }
-        return rsl;
+        items.remove(index);
+        return true;
     }
 }
