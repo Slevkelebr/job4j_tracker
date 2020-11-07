@@ -17,7 +17,7 @@ public class MemTracker {
     /**
      * Массив для хранения заявок.
      */
-    private final List<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>(100);
 
     /**
      * Метод добавления заявки в хранилище
