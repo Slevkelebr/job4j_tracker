@@ -18,7 +18,7 @@ public class FindIdAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        String id = input.askStr("Enter ID item: ");
+        Integer id = input.askInt("Enter ID item: ");
         String answer = null;
         if (tracker.findById(id).getName() != null) {
             answer = tracker.findById(id).getName();

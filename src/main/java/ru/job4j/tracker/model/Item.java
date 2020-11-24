@@ -9,19 +9,24 @@ import java.util.Objects;
  * @version 0.2
  * @since 03.04.2020
  */
+
 public class Item {
-    private String id;
+
+    private Integer id;
     private String name;
 
     public Item(String name) {
         this.name = name;
     }
 
-    public String getId() {
+    public Item() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,5 +53,13 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + '}';
     }
 }

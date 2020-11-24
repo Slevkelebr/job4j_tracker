@@ -34,9 +34,9 @@ public class MemTracker {
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      * @return Уникальный ключ.
      */
-    private String generateId() {
+    private Integer generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return rm.nextInt();
     }
 
     /**
@@ -67,7 +67,7 @@ public class MemTracker {
      * @param id id заявки.
      * @return заявка.
      */
-    public Item findById(String id) {
+    public Item findById(Integer id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
@@ -77,7 +77,7 @@ public class MemTracker {
      * @param id id заявки.
      * @return индекс заявки.
      */
-    public int indexOf(String id) {
+    public int indexOf(Integer id) {
         int index = -1;
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
@@ -94,7 +94,7 @@ public class MemTracker {
      * @param item новая заявка.
      * @return true если замена прошла успешна иначе false.
      */
-    public boolean replace(String id, Item item) {
+    public boolean replace(Integer id, Item item) {
         int index = indexOf(id);
         if (index == -1) {
             return false;
@@ -109,7 +109,7 @@ public class MemTracker {
      * @param id id заявки.
      * @return true если замена прошла успешна иначе false.
      */
-    public boolean delete(String id) {
+    public boolean delete(Integer id) {
         int index = indexOf(id);
         if (index == -1) {
             return false;

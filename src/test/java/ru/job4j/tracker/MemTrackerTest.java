@@ -52,7 +52,7 @@ public class MemTrackerTest {
         MemTracker memTracker = new MemTracker();
         Item bug = new Item("Bug");
         memTracker.add(bug);
-        String id = bug.getId();
+        Integer id = bug.getId();
         Item bugWithDesc = new Item("Bug with description");
         memTracker.replace(id, bugWithDesc);
         assertThat(memTracker.findById(id).getName(), is("Bug with description"));
@@ -63,7 +63,7 @@ public class MemTrackerTest {
         MemTracker memTracker = new MemTracker();
         Item bug = new Item("Bug");
         memTracker.add(bug);
-        String id = bug.getId();
+        Integer id = bug.getId();
         assertTrue(memTracker.delete(id));
     }
 }
