@@ -1,5 +1,6 @@
 package ru.job4j.tracker.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -9,9 +10,11 @@ import java.util.Objects;
  * @version 0.2
  * @since 03.04.2020
  */
-
+@Entity
+@Table(name = "items")
 public class Item {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
