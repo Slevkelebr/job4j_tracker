@@ -1,8 +1,10 @@
 package ru.job4j.tracker;
 
 import ru.job4j.tracker.action.*;
+import ru.job4j.tracker.input.ConsoleInput;
 import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.input.ValidateInput;
+import ru.job4j.tracker.store.HbmTracker;
 import ru.job4j.tracker.store.SqlTracker;
 import ru.job4j.tracker.store.Store;
 
@@ -49,8 +51,8 @@ public class StartUI {
         UserAction[] actions = {
                 new CreateAction(), new ShowAllAction(), new ReplaceAction(), new DeleteAction(), new FindIdAction(), new FindNameAction(), new ExitAction()
         };
-        Input input = new ValidateInput();
-        Store tracker = new SqlTracker();
+        Input input = new ValidateInput(new ConsoleInput());
+        Store tracker = HbmTracker.instanceOf();
         new StartUI().init(input, tracker, actions);
     }
 }
