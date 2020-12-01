@@ -15,16 +15,8 @@ public class HbmTracker implements Store, AutoCloseable {
             .configure().build();
     private final SessionFactory sf = new MetadataSources(registry)
             .buildMetadata().buildSessionFactory();
-    private static HbmTracker instance;
 
-    private HbmTracker() {
-    }
-
-    public static HbmTracker instanceOf() {
-        if (instance == null) {
-            instance = new HbmTracker();
-        }
-        return instance;
+    public HbmTracker() {
     }
 
     @Override

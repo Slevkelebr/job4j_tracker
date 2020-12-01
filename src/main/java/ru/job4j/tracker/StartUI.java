@@ -52,7 +52,7 @@ public class StartUI {
                 new CreateAction(), new ShowAllAction(), new ReplaceAction(), new DeleteAction(), new FindIdAction(), new FindNameAction(), new ExitAction()
         };
         Input input = new ValidateInput(new ConsoleInput());
-        Store tracker = HbmTracker.instanceOf();
+        Store tracker = new HbmTracker();
         new StartUI().init(input, tracker, actions);
     }
 }
